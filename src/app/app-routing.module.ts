@@ -11,8 +11,19 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'about/:id/:username',
+    path: 'about',
     component: AboutComponent,
+    children: [
+      {
+        path: ':id/:username',
+        component: AboutComponent,
+      },
+    ],
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
   {
     path: '404',
@@ -25,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -8,12 +8,14 @@
   <nav>
 
     <ul>
-      <li><a routerLink="/" [routerLinkActive]="['nav__link--has-active']"
+      <li><a routerLink="/" [routerLinkActive]="['nav__link--is-active']"
           [routerLinkActiveOptions]="{exact:true}">Home</a></li>
-      <li><a routerLink="/about" [routerLinkActive]="['nav__link--has-active']"
-          [routerLinkActiveOptions]="{exact:true}">Sobre</a></li>
-      <li><a routerLink="/404" [routerLinkActive]="['nav__link--has-active']"
+      <li><a routerLink="/about" [routerLinkActive]="['nav__link--is-active']"
+          [routerLinkActiveOptions]="{exact:false}">Sobre</a></li>
+      <li><a routerLink="/404" [routerLinkActive]="['nav__link--is-active']"
           [routerLinkActiveOptions]="{exact:true}">Error</a></li>
+      <li><a routerLink="/dashboard" [routerLinkActive]="['nav__link--is-active']"
+          [routerLinkActiveOptions]="{exact:true}">dashboard</a></li>
 
     </ul>
 

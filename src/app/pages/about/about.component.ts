@@ -1,4 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 interface IParamiter {
@@ -11,12 +11,22 @@ interface IParamiter {
   styleUrls: ['./about.component.scss'],
 })
 export class AboutComponent implements OnInit {
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {}
 
   public nome: string;
   public id: number;
+  public obj: {};
   ngOnInit(): void {
     //res=> console.log(res.id,res.username
+    this.getIdAndNameByUrl();
+    this.queryParamsUrl();
+    this.redirectByTime();
+
+    console.log(this.nome);
+    console.log(this.id);
+  }
+
+  getIdAndNameByUrl() {
     this.activatedRoute.params.subscribe({
       next: (res) => {
         console.log(res);
@@ -25,14 +35,23 @@ export class AboutComponent implements OnInit {
       },
       error: (err) => console.log(err),
     });
-
+  }
+  queryParamsUrl() {
     this.activatedRoute.queryParams.subscribe({
-      next: (res) => console.log(res),
+      next: (res) => {
+        console.log(res);
+        this.obj = res;
+        return res;
+      },
 
       error: (err) => err,
     });
+  }
 
-    console.log(this.nome);
-    console.log(this.id);
+  redirectByTime() {
+    setInterval(() => {
+      this.router.navigate(['404']);
+      // this.router.navigateByUrl('404');
+    }, 5000);
   }
 }
