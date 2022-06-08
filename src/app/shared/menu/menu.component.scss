@@ -1,0 +1,8 @@
+.nav {
+  &__link {
+    &--has-active {
+      background: red;
+      color: #eee;
+    }
+  }
+}
